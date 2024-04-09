@@ -7,9 +7,9 @@ services:
     cap_add:
       - "NET_ADMIN"
     ports:
-      - "3080:80"
-      - "3443:443"
-      - "3443:443/udp"
+      - "30080:80"
+      - "30443:443"
+      - "30443:443/udp"
     volumes:
       - static:/srv
       - caddy_data:/data:rw
