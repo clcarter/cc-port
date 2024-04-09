@@ -14,9 +14,7 @@ services:
       - static:/srv
       - caddy_data:/data:rw
       - caddy_config:/config:rw
-    configs:
-      - source: caddyfile
-        target: /etc/caddy/Caddyfile
+      - /mnt/user/appdata/cc-port/Caddyfile:/etc/caddy/Caddyfile
     networks:
       cwproxy:
         ipv4_address: ${IPV4_CADDY}
@@ -30,13 +28,6 @@ services:
     networks:
       cwproxy:
         ipv4_address: ${IPV4_SERVER}
-
-configs:
-  caddyfile:
-    content: |
-      localhost
-
-      file_server
 
 volumes:
   caddy_data:
