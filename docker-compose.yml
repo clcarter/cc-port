@@ -1,24 +1,6 @@
 version: '2'
 
 services:
-  cc-port-caddy:
-    image: caddy:latest
-    restart: unless-stopped
-    cap_add:
-      - "NET_ADMIN"
-    ports:
-      - "30080:80"
-      - "30443:443"
-      - "30443:443/udp"
-    volumes:
-      - static:/srv
-      - caddy_data:/data:rw
-      - caddy_config:/config:rw
-      - /mnt/user/appdata/cc-port/Caddyfile:/etc/caddy/Caddyfile # find way to include in build
-    networks:
-      cwproxy:
-        ipv4_address: ${IPV4_CADDY}
-
   cc-port:
     image: ghcr.io/clcarter/cc-port:latest
     restart: unless-stopped
