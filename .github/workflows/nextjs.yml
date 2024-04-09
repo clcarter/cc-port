@@ -116,7 +116,6 @@ jobs:
           portainer-host: ${{ secrets.PORTAINER_HOST }}
           username: ${{ secrets.PORTAINER_USERNAME }}
           password: ${{ secrets.PORTAINER_PASSWORD }}
-          stack-name: 'my-awesome-web-app'
-          stack-definition: 'stack-definition.yml'
-          template-variables: '{"username": "MrCool"}'
+          stack-name: 'cc-port'
+          stack-definition: 'docker-compose.yml'
           image: ${{ env.DOCKER_IMAGE_URI }}:${{ env.IMAGE_TAG }}
