@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  cc-port-caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    cap_add:
+      - "NET_ADMIN"
+    ports:
+      - "3080:80"
+      - "3443:443"
+      - "3443:443/udp"
+    volumes:
+      - static:/srv
+      - caddy_data:/data:rw
+      - caddy_config:/config:rw
+    configs:
+      - source: caddyfile
+        target: /etc/caddy/Caddyfile
+    networks:
+      cwproxy:
+        ipv4_address: ${IPV4_CADDY}
+
+  cc-port:
+    image: https://ghcr.io/clcarter/cc-port
+    ports: 
+      - "3000:3000"
+    volumes:
+      - static:/.next/static
+    networks:
+      cwproxy:
+        ipv4_address: ${IPV4_SERVER}
+
+configs:
+  caddyfile:
+    content: |
+      localhost
+
+      file_server
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:
+  static:
+
+networks:
+  cwproxy:
+    name: cwproxy
+    external: true
