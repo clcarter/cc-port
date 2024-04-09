@@ -105,17 +105,3 @@ jobs:
           context: .
           push: true
           tags: ${{ env.DOCKER_IMAGE_URI }}:${{ env.IMAGE_TAG }},${{ env.DOCKER_IMAGE_URI }}:latest
-
-      - name: Sleep for 10 seconds
-        run: sleep 10s
-        shell: bash
-
-      - name: Deploy stack to Portainer
-        uses: carlrygart/portainer-stack-deploy@v1
-        with:
-          portainer-host: ${{ secrets.PORTAINER_HOST }}
-          username: ${{ secrets.PORTAINER_USERNAME }}
-          password: ${{ secrets.PORTAINER_PASSWORD }}
-          stack-name: 'cc-port'
-          stack-definition: 'docker-compose.yml'
-          image: ${{ env.DOCKER_IMAGE_URI }}:${{ env.IMAGE_TAG }}
