@@ -14,7 +14,7 @@ services:
       - static:/srv
       - caddy_data:/data:rw
       - caddy_config:/config:rw
-      - /mnt/user/appdata/cc-port/Caddyfile:/etc/caddy/Caddyfile
+      - /mnt/user/appdata/cc-port/Caddyfile:/etc/caddy/Caddyfile # find way to include in build
     networks:
       cwproxy:
         ipv4_address: ${IPV4_CADDY}
