@@ -6,16 +6,9 @@ services:
     restart: unless-stopped
     ports: 
       - "3000:3000"
-    volumes:
-      - static:/.next/static
     networks:
       cwproxy:
         ipv4_address: ${IPV4_SERVER}
-
-volumes:
-  caddy_data:
-  caddy_config:
-  static:
 
 networks:
   cwproxy:
