@@ -20,7 +20,8 @@ services:
         ipv4_address: ${IPV4_CADDY}
 
   cc-port:
-    image: https://ghcr.io/clcarter/cc-port
+    image: ghcr.io/clcarter/cc-port:latest
+    restart: unless-stopped
     ports: 
       - "3000:3000"
     volumes:
