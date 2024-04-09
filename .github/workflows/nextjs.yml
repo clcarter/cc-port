@@ -58,9 +58,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build with Next.js
-        run: pnpm build
-
       - name: Cache build files
         uses: actions/cache@v4
         with:
@@ -73,6 +70,10 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+              
+      - name: Build with Next.js
+        run: pnpm build
+
 
   # Deployment job
   deploy:
